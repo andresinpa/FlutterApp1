@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:project0/View/Registro.dart';
+import 'View/Login.dart';
 import 'firebase_options.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,1
+    options: DefaultFirebaseOptions.currentPlatform,
   );
   runApp(MyApp());
 }
@@ -26,58 +27,51 @@ class Home extends StatefulWidget {
 class HomeStart extends State<Home> {
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "Bienvenidos",
+      title: "Principal",
       home: Scaffold(
         appBar: AppBar(
-          title: Text("App Linea 2"),
+          title: Text("Aplicativo prueba de Login"),
         ),
-        body: SingleChildScrollView(
+        body: Center(
           //Deslizar verticalmente
           child: Column(
             children: [
+
               Padding(
                 padding: EdgeInsets.only(  //Margen a los lados
-                    top: 10, left: 10, right: 10),
+                    top: 60, left: 10, right: 10),
                 child: Container(
                   //Dimensiones internas contenedor
                   width: 200,
                   height: 200,
-                  child: Image.asset('img/login.png'),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(10),
-                child: TextField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    labelText: 'Email User',
-                    hintText: 'Digite email de usuario',
-                  ),
+                  child: Image.asset('img/inicio.png'),
                 ),
               ),
 
-              Padding(
-                padding: EdgeInsets.all(10),
-                child: TextField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    labelText: 'Password',
-                    hintText: 'Digite password de usuario',
-                  ),
-                ),
+              const SizedBox(
+                height: 40,
               ),
+
               Padding(
                 padding: EdgeInsets.only(top:20, left:10, right: 10),
                 child: ElevatedButton(
                   onPressed: (){
-                    print('Boton presionado');
+                    Navigator.push(context, MaterialPageRoute(builder: (_)=> Login()));
                   },
-                  child: Text('Enviar'),
+                  child: Text('Login'),
                 ),
+
+              ),
+
+              Padding(
+                padding: EdgeInsets.only(top:20, left:10, right: 10),
+                child: ElevatedButton(
+                  onPressed: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (_)=> Registro(LoginApp().objUser)));
+                  },
+                  child: Text('Registro'),
+                ),
+
               ),
             ],
           ),
