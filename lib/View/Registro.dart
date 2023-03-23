@@ -13,6 +13,24 @@ class Registro extends StatefulWidget {
   RegistroApp createState() => RegistroApp();
 }
 
+void mensaje(BuildContext context, String titulo, String contenido, Function navegacion) =>
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text(titulo),
+          content: Text(contenido),
+          actions: <Widget>[
+            TextButton(
+                onPressed: () {
+                  navegacion(context);
+                },
+                child: Text('Aceptar')),
+          ],
+        );
+      },
+    );
+
 class RegistroApp extends State<Registro> {
   TextEditingController nombre = TextEditingController();
   TextEditingController identidad = TextEditingController();
@@ -47,47 +65,27 @@ class RegistroApp extends State<Registro> {
           "CorreoUsuario": correo.text,
           "TelefonoUsuario": telefono.text,
           "ContrasenaUsuario": digest.toString(),
+          "Rol": "Invitado",
+          "Estado": true,
         });
         print('Envio correcto');
-        showDialog(
-            context: context,
-            builder: (context) => AlertDialog(
-                  title: Text('Mensaje'),
-                  content: Text('¡Registro Exitoso!'),
-                  actions: <Widget>[
-                    TextButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        child: Text('Aceptar')),
-                  ],
-                ));
+        //ShowDialog
+        mensaje(context, 'Mensaje', '¡Registro Exitoso!', (context) => Navigator.pop(context));
       } else {
         print('Todos los campos deben estar llenos');
-        showDialog(
-            context: context,
-            builder: (context) => AlertDialog(
-                  title: Text('Alerta'),
-                  content: Text('¡Todos los campos deben estar llenos!'),
-                  actions: <Widget>[
-                    TextButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        child: Text('Aceptar')),
-                  ],
-                ));
+        mensaje(context, 'Alerta', '¡Todos los campos deben estar llenos!', (context) => Navigator.pop(context));
       }
     } catch (e) {
       print('error en insert.... ' + e.toString());
     }
   }
+  //aqui va el metodo mensaje
 
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Registro de usuario ---> ' + widget.cadena.nombre),
-        backgroundColor: Colors.cyan,
+        title: Text('Registro de usuario'),
+        backgroundColor: Color(0xff757575),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -196,6 +194,9 @@ class RegistroApp extends State<Registro> {
                   contrasena.clear();
                 },
                 child: Text('Enviar'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color(0xff009688),
+                ),
               ),
             ),
           ],

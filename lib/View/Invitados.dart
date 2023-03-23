@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:project0/main.dart';
+import '../main.dart';
 
-class Bienvenida extends StatefulWidget {
+class Invitados extends StatefulWidget {
+  final String nombre;
+  Invitados(this.nombre);
   @override
-  BienvenidaApp createState() => BienvenidaApp();
+  InvitadosApp createState() => InvitadosApp();
 }
 
-class BienvenidaApp extends State<Bienvenida> {
+class InvitadosApp extends State<Invitados> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Bienvenida'),
+        title: Text('☺ Invitado ➡ ' + widget.nombre),
         automaticallyImplyLeading: false, //Borrar flecha atras
-        backgroundColor: Color(0xff0E5589),
+        backgroundColor: Color(0xff8BC34A),
       ),
       body: Center(
         child: Column(
@@ -27,7 +29,7 @@ class BienvenidaApp extends State<Bienvenida> {
                 //Dimensiones internas contenedor
                 width: 400,
                 height: 400,
-                child: Image.asset('img/bienvenida.gif'),
+                child: Image.asset('img/Invitado.gif'),
               ),
             ),
             Padding(
@@ -38,6 +40,9 @@ class BienvenidaApp extends State<Bienvenida> {
                       context, MaterialPageRoute(builder: (_) => MyApp()));
                 },
                 child: Text('Salir'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color(0xff009688),
+                ),
               ),
             ),
           ],

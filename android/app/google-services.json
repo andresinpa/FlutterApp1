@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "740372447253",
+    "project_id": "lineapii",
+    "storage_bucket": "lineapii.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:740372447253:android:1ddd7dfef580fcd8ee0e1c",
+        "android_client_info": {
+          "package_name": "co.ucundinamarca.project0"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "740372447253-2qmo8q6ie7umq3ajhs3k5s2cs62scuno.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDejz1R9rDHZ2p21DosNyE5WORazS0dp3M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "740372447253-2qmo8q6ie7umq3ajhs3k5s2cs62scuno.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
