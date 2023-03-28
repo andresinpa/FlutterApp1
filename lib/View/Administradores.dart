@@ -1,6 +1,6 @@
+import 'package:AppPro/View/Geoposition.dart';
 import 'package:flutter/material.dart';
-import '../DTO/User.dart';
-import '../main.dart';
+import 'Registro.dart';
 
 class Administradores extends StatefulWidget {
   final String nombre;
@@ -22,7 +22,7 @@ class AdministradoresApp extends State<Administradores> {
           children: [
             Padding(
               padding: EdgeInsets.only(
-                //Margen a los lados
+                  //Margen a los lados
                   top: 60,
                   left: 10,
                   right: 10),
@@ -37,10 +37,10 @@ class AdministradoresApp extends State<Administradores> {
               padding: EdgeInsets.all(20),
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.push(
-                      context, MaterialPageRoute(builder: (_) => MyApp()));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (_) => Geoposition()));
                 },
-                child: Text('Salir'),
+                child: Text('Mi Ubicación'),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Color(0xff009688),
                 ),
