@@ -9,6 +9,7 @@ class GeopositionApp extends State<Geoposition> {
   TextEditingController latitud = TextEditingController();
   TextEditingController longitud = TextEditingController();
   late Position position;
+  bool _isLoading = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,11 +25,26 @@ class GeopositionApp extends State<Geoposition> {
                 padding: EdgeInsets.only(top: 20, left: 10, right: 10),
                 child: ElevatedButton(
                   onPressed: () async {
+                    setState(() {
+                      _isLoading = true;
+                    });
+
                     position = await determinePosition();
                     longitud.text = position.longitude.toString();
                     latitud.text = position.latitude.toString();
+
+                    setState(() {
+                      _isLoading = false;
+                    });
                   },
-                  child: Icon(Icons.location_on, size: 40),
+                  child: _isLoading
+                      ? CircularProgressIndicator(
+                          color: Color.fromARGB(230, 230, 230, 230),
+                        )
+                      : Icon(Icons.location_on, size: 60),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color(0xff009688),
+                  ),
                 ),
               ),
               Padding(
