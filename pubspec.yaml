@@ -39,6 +39,7 @@ dependencies:
   crypto: ^3.0.2
   local_auth: ^1.1.6
   geolocator: ^9.0.2
+  firebase_messaging: ^14.3.0
 
 dev_dependencies:
   flutter_test:

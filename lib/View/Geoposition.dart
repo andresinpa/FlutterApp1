@@ -1,3 +1,4 @@
+import 'package:AppPro/main.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 
@@ -69,6 +70,22 @@ class GeopositionApp extends State<Geoposition> {
                       ),
                       enabled: false,
                       labelText: 'Longitud'),
+                ),
+              ),
+              const SizedBox(
+                height: 40,
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 20, left: 10, right: 10),
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context, MaterialPageRoute(builder: (_) => MyApp()));
+                  },
+                  child: Text('Ir a inicio'),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color(0xff009688),
+                  ),
                 ),
               ),
             ],

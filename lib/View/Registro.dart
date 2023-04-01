@@ -1,3 +1,4 @@
+import 'package:AppPro/DTO/Token.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 //librerias para usar crypto
@@ -13,7 +14,8 @@ class Registro extends StatefulWidget {
   RegistroApp createState() => RegistroApp();
 }
 
-void mensaje(BuildContext context, String titulo, String contenido, Function navegacion) =>
+void mensaje(BuildContext context, String titulo, String contenido,
+        Function navegacion) =>
     showDialog(
       context: context,
       builder: (context) {
@@ -41,8 +43,11 @@ class RegistroApp extends State<Registro> {
 
   bool mostrar = true;
 
+  Token tk = Token();
+
   insertarDatos() async {
     try {
+      //String tok = await tk.generarToken();
       if (nombre.text.length != 0 &&
           identidad.text.length != 0 &&
           correo.text.length != 0 &&
@@ -67,13 +72,16 @@ class RegistroApp extends State<Registro> {
           "ContrasenaUsuario": digest.toString(),
           "Rol": "Invitado",
           "Estado": true,
+          "Token": await tk.generarToken(),
         });
         print('Envio correcto');
         //ShowDialog
-        mensaje(context, 'Mensaje', '¡Registro Exitoso!', (context) => Navigator.pop(context));
+        mensaje(context, 'Mensaje', '¡Registro Exitoso!',
+            (context) => Navigator.pop(context));
       } else {
         print('Todos los campos deben estar llenos');
-        mensaje(context, 'Alerta', '¡Todos los campos deben estar llenos!', (context) => Navigator.pop(context));
+        mensaje(context, 'Alerta', '¡Todos los campos deben estar llenos!',
+            (context) => Navigator.pop(context));
       }
     } catch (e) {
       print('error en insert.... ' + e.toString());
