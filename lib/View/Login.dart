@@ -99,7 +99,7 @@ class LoginApp extends State<Login> {
         child: Column(
           children: [
             Padding(
-              padding: EdgeInsets.only(
+              padding: const EdgeInsets.only(
                   //Margen a los lados
                   top: 10,
                   left: 10,

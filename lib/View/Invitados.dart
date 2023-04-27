@@ -1,5 +1,7 @@
 import 'package:AppPro/View/Geoposition.dart';
+import 'package:AppPro/View/Login.dart';
 import 'package:AppPro/View/Rest.dart';
+import 'package:AppPro/View/Clima.dart';
 import 'package:flutter/material.dart';
 import '../main.dart';
 import 'Registro.dart';
@@ -36,7 +38,7 @@ class InvitadosApp extends State<Invitados> {
                   child: Image.asset('img/Invitado.gif'),
                 ),
               ),
-              Padding(
+              /*Padding(
                 padding: EdgeInsets.all(20),
                 child: ElevatedButton(
                   onPressed: () {
@@ -48,7 +50,7 @@ class InvitadosApp extends State<Invitados> {
                     backgroundColor: Color(0xff009688),
                   ),
                 ),
-              ),
+              ),*/
               Padding(
                 padding: EdgeInsets.only(top: 20, left: 10, right: 10),
                 child: ElevatedButton(
@@ -56,7 +58,33 @@ class InvitadosApp extends State<Invitados> {
                     Navigator.push(
                         context, MaterialPageRoute(builder: (_) => Rest()));
                   },
-                  child: Text('REST'),
+                  child: Text('JSON Placeholder'),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color(0xff009688),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 20, left: 10, right: 10),
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (_) => const Clima()));
+                  },
+                  child: Text('🌤 Clima'),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color(0xff009688),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 20, left: 10, right: 10),
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context, MaterialPageRoute(builder: (_) => Home()));
+                  },
+                  child: Text('Salir'),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color(0xff009688),
                   ),

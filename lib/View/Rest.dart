@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 
@@ -9,9 +11,24 @@ class Rest extends StatefulWidget {
 }
 
 class RestApp extends State<Rest> {
-  TextEditingController dato = TextEditingController();
-  TextEditingController responsePeticion = TextEditingController();
-  TextEditingController statusCode = TextEditingController();
+  consumirGet(String dato) async {
+    try {
+      final url = Uri.parse('https://jsonplaceholder.typicode.com/posts/$dato');
+      Response response = await get(url);
+      Map data = jsonDecode(response.body);
+      print(response.statusCode.toString());
+      if (response.statusCode.toString() == '200') {
+        title.text = '${data['title']}';
+        code.text = response.statusCode.toString();
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  TextEditingController id = TextEditingController();
+  TextEditingController code = TextEditingController();
+  TextEditingController title = TextEditingController();
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -24,7 +41,7 @@ class RestApp extends State<Rest> {
             Padding(
               padding: EdgeInsets.all(10),
               child: TextField(
-                controller: dato,
+                controller: id,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
@@ -38,11 +55,10 @@ class RestApp extends State<Rest> {
               padding: EdgeInsets.only(top: 20, left: 10, right: 10),
               child: ElevatedButton(
                 onPressed: () async {
-                  Map datosResponse = await getRequest(dato.text);
-                  setState(() {
-                    responsePeticion.text = datosResponse['responseBody'];
-                    statusCode.text = datosResponse['statusCode'].toString();
-                  });
+                  consumirGet(id.text);
+                  //Map datosResponse = await getRequest(id.text);
+                  //code.text = datosResponse['responseBody'];
+                  //title.text = datosResponse['statusCode'].toString();
                 },
                 child: Text('HTTP'),
                 style: ElevatedButton.styleFrom(
@@ -53,12 +69,12 @@ class RestApp extends State<Rest> {
             Padding(
               padding: EdgeInsets.all(10),
               child: TextField(
-                controller: responsePeticion,
+                controller: code,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  labelText: 'Response',
+                  labelText: 'Code',
                   //hintText: 'Request',
                 ),
               ),
@@ -66,13 +82,13 @@ class RestApp extends State<Rest> {
             Padding(
               padding: EdgeInsets.all(10),
               child: TextField(
-                controller: statusCode,
+                controller: title,
                 enabled: false,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  labelText: 'Code Response',
+                  labelText: 'Titulo',
                   //hintText: '',
                 ),
               ),
@@ -82,9 +98,9 @@ class RestApp extends State<Rest> {
               child: ElevatedButton(
                 onPressed: () {
                   setState(() {
-                    responsePeticion.clear();
-                    statusCode.clear();
-                    dato.clear();
+                    code.clear();
+                    title.clear();
+                    id.clear();
                   });
                 },
                 child: Text('Borrar'),
@@ -99,7 +115,7 @@ class RestApp extends State<Rest> {
     );
   }
 
-  Future<Map> getRequest(String dato) async {
+  /*Future<Map> getRequest(String dato) async {
     final url = Uri.parse('https://jsonplaceholder.typicode.com/posts/$dato');
     Response response = await get(url);
     final datosResponse = {
@@ -111,5 +127,5 @@ class RestApp extends State<Rest> {
     //print('Status code: ${response.statusCode}');
     //print('Headers: ${response.headers}');
     //print('Body: ${response.body}');
-  }
+  }*/
 }
