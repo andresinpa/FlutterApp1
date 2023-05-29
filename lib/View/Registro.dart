@@ -55,8 +55,8 @@ class RegistroApp extends State<Registro> {
           contrasena.text.length != 0) {
         var bytes = utf8.encode(contrasena.text); // datos que se procesan
         var digest = sha256.convert(bytes);
-        print("Digerir como bytes: ${digest.bytes}");
-        print("Digerir como hex string: $digest");
+        //print("Digerir como bytes: ${digest.bytes}");
+        //print("Digerir como hex string: $digest");
 
         /*var bytes2 = utf8.encode('prueba1'); // data being hashed
         var digest2 = sha256.convert(bytes2);
@@ -74,12 +74,12 @@ class RegistroApp extends State<Registro> {
           "Estado": true,
           "Token": await tk.generarToken(),
         });
-        print('Envio correcto');
+        //print('Envio correcto');
         //ShowDialog
         mensaje(context, 'Mensaje', '¡Registro Exitoso!',
             (context) => Navigator.pop(context));
       } else {
-        print('Todos los campos deben estar llenos');
+        //print('Todos los campos deben estar llenos');
         mensaje(context, 'Alerta', '¡Todos los campos deben estar llenos!',
             (context) => Navigator.pop(context));
       }
